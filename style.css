@@ -1,0 +1,33 @@
+body {
+  font-family: Arial;
+  max-width: 500px;
+  margin: 30px auto;
+}
+
+input, select, button {
+  margin: 5px 0;
+  padding: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+li {
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+}
+
+li.high { background-color: #ffd5d5; }
+li.medium { background-color: #fff5cc; }
+li.low { background-color: #d5ffd5; }
+li.completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+button.delete-btn {
+  float: right;
+  background: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+}

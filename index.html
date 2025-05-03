@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>To-Do App Theo Ngày</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="auth-screen">
+    <div id="login-screen">
+      <form onsubmit="event.preventDefault(); login();">
+        <h2>Đăng nhập</h2>
+        <input id="username" placeholder="Tên đăng nhập">
+        <input id="password" type="password" placeholder="Mật khẩu">
+        <button type="submit">Đăng nhập</button>
+        <p>Bạn chưa có tài khoản? <a href="#" onclick="toggleAuth('register')">Đăng ký</a></p>
+      </form>
+    </div>
+
+    <div id="register-screen" style="display: none;">
+      <form onsubmit="event.preventDefault(); register();">
+        <h2>Đăng ký</h2>
+        <input id="new-username" placeholder="Tài khoản mới">
+        <input id="new-password" type="password" placeholder="Mật khẩu mới">
+        <input id="confirm-password" type="password" placeholder="Nhập lại mật khẩu">
+        <button type="submit">Tạo tài khoản</button>
+        <p>Đã có tài khoản? <a href="#" onclick="toggleAuth('login')">Đăng nhập</a></p>
+      </form>
+    </div>
+    <p id="login-error" style="color: red;"></p>
+  </div>
+
+  <div id="app-screen" style="display: none;">
+    <h2>Lịch làm việc</h2>
+    <input type="date" id="task-date" onchange="loadTasks()" />
+    <form onsubmit="addTask(event)">
+      <input id="task-input" placeholder="Nội dung công việc" required>
+      <select id="priority-select">
+        <option value="3">Ưu tiên cao</option>
+        <option value="2">Trung bình</option>
+        <option value="1">Thấp</option>
+      </select>
+      <button type="submit">Thêm công việc</button>
+    </form>
+    <ul id="task-list"></ul>
+    <button onclick="logout()">Đăng xuất</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
