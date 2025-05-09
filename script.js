@@ -64,8 +64,8 @@ function logout() {
 function addTask(event) {
   event.preventDefault();
   const content = document.getElementById('task-input').value;
-  const priorityMap = { high : 3, medium: 2, low: 1 }; //Map mức độ ưu tiên
-  const priority = priorityMap[document.getElementById('priority-select').value];
+  const priorityMap = { high: 3, medium: 2, low: 1 }; // Map mức độ ưu tiên
+  const priority = priorityMap[document.getElementById('priority-select').value]; // Chuyển đổi sang số
   const taskDate = document.getElementById('task-date').value;
 
   if (!taskDate) {
@@ -94,29 +94,20 @@ function toggleTaskCompleted(date, index) {
 function loadTasks() {
   const taskDate = document.getElementById('task-date').value;
   
-  // Kiểm tra nếu chưa chọn ngày, không tải công việc
   if (!taskDate) {
     return;
   }
 
-  // Lấy dữ liệu từ localStorage
   const users = JSON.parse(localStorage.getItem('users')) || {};
-  
-  // Kiểm tra nếu người dùng chưa có công việc
   if (!users[currentUser]) {
     console.log("Không tìm thấy dữ liệu người dùng");
     return;
   }
 
-  const tasks = users[currentUser]?.tasks?.[taskDate] || []; // Lấy các công việc cho ngày đã chọn
-
-  // Kiểm tra nếu không có công việc
-  if (tasks.length === 0) {
-    console.log("Không có công việc cho ngày này.");
-  }
+  const tasks = users[currentUser]?.tasks?.[taskDate] || [];
 
   const list = document.getElementById('task-list');
-  list.innerHTML = ''; // Xóa danh sách công việc cũ
+  list.innerHTML = '';
 
   if (tasks.length === 0) {
     list.innerHTML = '<li>Không có công việc cho ngày này.</li>';
@@ -126,7 +117,7 @@ function loadTasks() {
   // Sắp xếp công việc theo mức độ ưu tiên
   tasks.sort((a, b) => b.priority - a.priority);
 
-  const priorityMap = { 3: 'high', 2: 'medium', 1: 'low' }; // Định nghĩa các mức độ ưu tiên
+  const priorityTextMap = { 3: 'Cao', 2: 'Trung bình', 1: 'Thấp' }; // Map mức độ ưu tiên sang chuỗi
 
   tasks.forEach((task, index) => {
     const li = document.createElement('li');
@@ -139,16 +130,16 @@ function loadTasks() {
     checkbox.onchange = () => toggleTaskCompleted(taskDate, index);
     li.appendChild(checkbox);
 
-    const text = document.createTextNode(` ${task.content} (Ưu tiên ${priorityMap[task.priority]})`);
+    const text = document.createTextNode(` ${task.content} (Ưu tiên: ${priorityTextMap[task.priority]})`);
     li.appendChild(text);
 
     const btn = document.createElement('button');
     btn.textContent = 'Xoá';
     btn.className = 'delete-btn';
     btn.onclick = () => {
-      users[currentUser].tasks[taskDate].splice(index, 1); // Xóa công việc khỏi danh sách
-      localStorage.setItem('users', JSON.stringify(users)); // Lưu lại dữ liệu đã thay đổi
-      loadTasks(); // Tải lại danh sách công việc
+      users[currentUser].tasks[taskDate].splice(index, 1);
+      localStorage.setItem('users', JSON.stringify(users));
+      loadTasks();
     };
     li.appendChild(btn);
     list.appendChild(li);
