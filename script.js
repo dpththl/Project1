@@ -64,7 +64,8 @@ function logout() {
 function addTask(event) {
   event.preventDefault();
   const content = document.getElementById('task-input').value;
-  const priority = document.getElementById('priority-select').value;
+  const priorityMap = { high : 3, medium: 2, low: 1 }; //Map mức độ ưu tiên
+  const priority = priorityMap[document.getElementById('priority-select').value];
   const taskDate = document.getElementById('task-date').value;
 
   if (!taskDate) {
@@ -125,6 +126,8 @@ function loadTasks() {
   // Sắp xếp công việc theo mức độ ưu tiên
   tasks.sort((a, b) => b.priority - a.priority);
 
+  const priorityMap = { 3: 'high', 2: 'medium', 1: 'low' }; // Định nghĩa các mức độ ưu tiên
+
   tasks.forEach((task, index) => {
     const li = document.createElement('li');
     li.className = task.priority === 3 ? 'high' : task.priority === 2 ? 'medium' : 'low';
@@ -136,7 +139,7 @@ function loadTasks() {
     checkbox.onchange = () => toggleTaskCompleted(taskDate, index);
     li.appendChild(checkbox);
 
-    const text = document.createTextNode(` ${task.content} (Ưu tiên ${task.priority})`);
+    const text = document.createTextNode(` ${task.content} (Ưu tiên ${priorityMap[task.priority]})`);
     li.appendChild(text);
 
     const btn = document.createElement('button');
