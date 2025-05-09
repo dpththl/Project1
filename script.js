@@ -64,7 +64,7 @@ function logout() {
 function addTask(event) {
   event.preventDefault();
   const content = document.getElementById('task-input').value;
-  const priority = parseInt(document.getElementById('priority-select').value);
+  const priority = document.getElementById('priority-select').value;
   const taskDate = document.getElementById('task-date').value;
 
   if (!taskDate) {
