@@ -123,16 +123,17 @@ function loadTasks() {
     const li = document.createElement('li');
     li.className = task.priority === 3 ? 'high' : task.priority === 2 ? 'medium' : 'low';
     if (task.completed) li.classList.add('completed');
-
+  
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.checked = task.completed;
     checkbox.onchange = () => toggleTaskCompleted(taskDate, index);
     li.appendChild(checkbox);
-
+  
+    // Sử dụng priorityTextMap để hiển thị mức độ ưu tiên
     const text = document.createTextNode(` ${task.content} (Ưu tiên: ${priorityTextMap[task.priority]})`);
     li.appendChild(text);
-
+  
     const btn = document.createElement('button');
     btn.textContent = 'Xoá';
     btn.className = 'delete-btn';
