@@ -1,33 +1,137 @@
 body {
-  font-family: Arial;
+  background: #acfac8;
+  font-family: 'Courier New', Courier, monospace;
   max-width: 500px;
   margin: 30px auto;
+  font-size: 20px;
 }
 
-input, select, button {
+#login-screen h2 {
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+  font-size: 40px;
+  font-weight: 900;
+  color: #2a7f62;
+}
+
+#login-screen input {
+  border-radius: 6px;
+  margin: 5px 0;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 20px;
+}
+
+#login-screen button {
+  background-color: #0e4274;
+  color: #ffffff;
+  border-radius: 6px;
   margin: 5px 0;
   padding: 8px;
   width: 100%;
   box-sizing: border-box;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
 }
 
-li {
+#login-screen p {
+  font-style: italic;
+}
+
+#login-screen a {
+  font-weight: 600;
+}
+
+#register-screen h2 {
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+  font-size: 40px;
+  font-weight: 900;
+  color: #2a7f62;
+}
+
+#register-screen input {
+  border-radius: 6px;
+  margin: 5px 0;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 20px;
+}
+
+#register-screen button {
+  background-color: #0e4274;
+  color: #ffffff;
+  border-radius: 6px;
+  margin: 5px 0;
   padding: 8px;
-  border-bottom: 1px solid #ccc;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
 }
 
-li.high { background-color: #ffd5d5; }
-li.medium { background-color: #fff5cc; }
-li.low { background-color: #d5ffd5; }
-li.completed {
-  text-decoration: line-through;
-  opacity: 0.6;
+#register-screen p {
+  font-style: italic;
 }
 
-button.delete-btn {
-  float: right;
-  background: red;
-  color: white;
+#register-screen a {
+  font-weight: 600;
+}
+
+#app-screen {
+  background-color: #0e4274; /* màu nền bạn chọn */
+  padding: 20px;
+  border-radius: 10px;
+  color: #ffffff; /* chữ trắng cho dễ đọc */
+}
+
+#app-screen h2 {
+  color: #fff3b0; /* tiêu đề vàng nhạt nổi bật */
+  text-align: center;
+  font-size: 36px;
+}
+
+#app-screen input,
+#app-screen select,
+#app-screen button {
+  margin: 10px 0;
+  padding: 10px;
+  width: 100%;
   border: none;
-  padding: 5px 10px;
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 18px;
+}
+
+#app-screen input,
+#app-screen select {
+  background-color: #ffffff;
+  color: #0e4274;
+}
+
+#app-screen button {
+  background-color: #ffffff;
+  color: #0e4274;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#app-screen button:hover {
+  background-color: #d4fbe2;
+}
+
+#task-list li {
+  background-color: #ffffff;
+  color: #0e4274;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 6px;
 }
