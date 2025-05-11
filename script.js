@@ -136,6 +136,7 @@ function loadTasks() {
     li.appendChild(checkbox);
   
     const text = document.createTextNode(` ${task.content} (Ưu tiên ${priorityTextMap[task.priority]})`);
+    const text = document.createTextNode(` ${task.content} (Ưu tiên ${priorityTextMap[task.priority]})`);
     li.appendChild(text);
   
     const btn = document.createElement('button');
