@@ -114,7 +114,6 @@ function loadTasks() {
     return;
   }
 
-  // Sắp xếp công việc theo mức độ ưu tiên
   tasks.sort((a, b) => b.priority - a.priority);
 
   const priorityTextMap = { 3: 'Cao', 2: 'Trung bình', 1: 'Thấp' }; // Map mức độ ưu tiên sang chuỗi
@@ -130,8 +129,7 @@ function loadTasks() {
     checkbox.onchange = () => toggleTaskCompleted(taskDate, index);
     li.appendChild(checkbox);
   
-    // Sử dụng priorityTextMap để hiển thị mức độ ưu tiên
-    const text = document.createTextNode(` ${task.content} (Ưu tiên: ${priorityTextMap[task.priority]})`);
+    const text = document.createTextNode(` ${task.content} (Ưu tiên ${priorityTextMap[task.priority]})`);
     li.appendChild(text);
   
     const btn = document.createElement('button');
