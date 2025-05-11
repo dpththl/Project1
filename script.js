@@ -95,29 +95,24 @@ function toggleTaskCompleted(date, index) {
 
 function loadTasks() {
   const taskDate = document.getElementById('task-date').value;
-  
-  if (!taskDate) {
-    return;
-  }
+  if (!taskDate) return;
 
   const users = JSON.parse(localStorage.getItem('users')) || {};
-  if (!users[currentUser]) {
-    console.log("Không tìm thấy dữ liệu người dùng");
-    return;
-  }
-  const tasks = users[currentUser]?.tasks?.[taskDate] || [];
+  const originTasks = users[currentUser]?.tasks?.[taskDate] || [];
   const list = document.getElementById('task-list');
   list.innerHTML = '';
 
-  if (tasks.length === 0) {
+  if (originTasks.length === 0) {
     list.innerHTML = '<li>Không có công việc cho ngày này.</li>';
     return;
   }
 
-  tasks.sort((a, b) => b.priority - a.priority);
+  const tasksWithIndex = originTasks.map((task, i) => ({ ...task, originIndex: i}));
+  tasksWithIndex.sort((a, b) => b.priority - a.priority);
+
   const priorityTextMap = { 3: 'Cao', 2: 'Trung bình', 1: 'Thấp' }; 
 
-  tasks.forEach((task, index) => {
+  tasksWithIndex.forEach((task, index) => {
     const li = document.createElement('li');
     li.className = task.priority === 3 ? 'high' : task.priority === 2 ? 'medium' : 'low';
     if (task.completed) li.classList.add('completed');
@@ -125,7 +120,7 @@ function loadTasks() {
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.checked = task.completed;
-    checkbox.onchange = () => toggleTaskCompleted(taskDate, index);
+    checkbox.onchange = () => toggleTaskCompleted(taskDate, task.originIndex);
     li.appendChild(checkbox);
   
     const text = document.createTextNode(` ${task.content} (Ưu tiên ${priorityTextMap[task.priority]})`);
@@ -135,7 +130,7 @@ function loadTasks() {
     btn.textContent = 'Xoá';
     btn.className = 'delete-btn';
     btn.onclick = () => {
-      users[currentUser].tasks[taskDate].splice(index, 1);
+      originTasks.splice(task.originIndex, 1);
       localStorage.setItem('users', JSON.stringify(users));
       loadTasks();
     };
