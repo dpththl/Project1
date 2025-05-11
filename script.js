@@ -34,7 +34,7 @@ function register() {
     return;
   }
 
-  users[user] = { password: pass, tasks: {}, profileCompleted: false };
+  users[user] = { password: pass, tasks: {} };
   localStorage.setItem('users', JSON.stringify(users));
   document.getElementById('login-error').textContent = 'Đăng ký thành công, bạn có thể đăng nhập';
   toggleAuth('login');
@@ -49,12 +49,7 @@ function login() {
     currentUser = u;
     document.getElementById('auth-screen').style.display = 'none';
     document.getElementById('app-screen').style.display = 'block';
-
-    if (!users[u].profileCompleted) {
-      document.getElementById('edit-profile-modal').style.display = 'flex';
-    } else {
-      loadTasks();
-    }
+    loadTasks();
   } else {
     document.getElementById('login-error').textContent = 'Sai tài khoản hoặc mật khẩu';
   }
@@ -110,9 +105,7 @@ function loadTasks() {
     console.log("Không tìm thấy dữ liệu người dùng");
     return;
   }
-
   const tasks = users[currentUser]?.tasks?.[taskDate] || [];
-
   const list = document.getElementById('task-list');
   list.innerHTML = '';
 
@@ -182,14 +175,7 @@ function saveProfile() {
   const job = document.getElementById('edit-job').value.trim();
   const workplace = document.getElementById('edit-workplace').value.trim();
 
-  if (!name || !dob || !email || !phone || !job || !workplace) {
-    alert("Vui lòng nhập đầy đủ thông tin cá nhân!");
-    return;
-  }
-
-  users[currentUser].info = { name, dob, email, phone, job, workplace };
-  users[currentUser].profileCompleted = true;
-  
+  users[currentUser].info = { avatar, name, dob, email, phone, job, workplace };  
   localStorage.setItem('users', JSON.stringify(users));
   closeEditModal();
   alert('Cập nhật hồ sơ thành công!');
