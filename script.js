@@ -124,7 +124,7 @@ function loadTasks() {
     contentWrapper.style.flexGrow = '1';
     
     const icon = document.createElement('i');
-    icon.className = task.completed ? 'fa-regular fa-square-check' : 'fa-regular fa-square';
+    icon.className = task.completed ? 'fa-solid fa-square-check' : 'fa-solid fa-square';
     icon.style.cursor = "pointer";
     icon.onclick = () => toggleTaskCompleted(taskDate, task.originIndex);
     li.appendChild(icon);
