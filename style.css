@@ -90,18 +90,6 @@ h2 {
           justify-content: space-between;
 }
 
-.high {
-  background-color: #ffdddd;
-}
-
-.medium {
-  background-color: #fff7cc;
-}
-
-.low {
-  background-color: #d5fbd5;
-}
-
 .completed-text {
   text-decoration: line-through;
   opacity: 0.6;

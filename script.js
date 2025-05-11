@@ -132,7 +132,7 @@ function loadTasks() {
     rightIcons.appendChild(checkboxIcon);
 
     const trashBtn = document.createElement('i');
-    trashBtn.className = 'fa-solid fa-trash';
+    trashBtn.className = '<i class="fa-solid fa-trash"></i>';
     trashBtn.onclick = () => {
       tasksWithIndex.splice(task.originalIndex, 1);
       users[currentUser].tasks[taskDate] = tasksWithIndex.map(task => ({
