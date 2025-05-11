@@ -182,12 +182,12 @@ function saveProfile() {
   const job = document.getElementById('edit-job').value.trim();
   const workplace = document.getElementById('edit-workplace').value.trim();
 
-  if (!avatar || !name || !dob || !email || !phone || !job || !workplace) {
+  if (!name || !dob || !email || !phone || !job || !workplace) {
     alert("Vui lòng nhập đầy đủ thông tin cá nhân!");
     return;
   }
 
-  users[currentUser].info = { avatar, name, dob, email, phone, job, workplace };
+  users[currentUser].info = { name, dob, email, phone, job, workplace };
   users[currentUser].profileCompleted = true;
   
   localStorage.setItem('users', JSON.stringify(users));
