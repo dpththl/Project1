@@ -43,6 +43,12 @@ h2 {
   color: #ffffff;
 }
 
+#app-screen {
+  background-color: #0e4274;
+  padding: 20px;
+  border-radius: 10px;
+}
+
 #app-screen h2 {
   color: #fff3b0; 
 }
