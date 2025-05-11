@@ -174,13 +174,13 @@ function closeEditModal() {
 
 function saveProfile() {
   const users = JSON.parse(localStorage.getItem('users'));
-  const avatar = document.getElementById('avatar-preview').src;
-  const name = document.getElementById('edit-name').value;
-  const dob = document.getElementById('edit-dob').value;
-  const email = document.getElementById('edit-email').value;
-  const phone = document.getElementById('edit-phone').value;
-  const job = document.getElementById('edit-job').value;
-  const workplace = document.getElementById('edit-workplace').value;
+  const avatar = document.getElementById('avatar-preview').src || '';
+  const name = document.getElementById('edit-name').value.trim();
+  const dob = document.getElementById('edit-dob').value.trim();
+  const email = document.getElementById('edit-email').value.trim();
+  const phone = document.getElementById('edit-phone').value.trim();
+  const job = document.getElementById('edit-job').value.trim();
+  const workplace = document.getElementById('edit-workplace').value.trim();
 
   if (!avatar || !name || !dob || !email || !phone || !job || !workplace) {
     alert("Vui lòng nhập đầy đủ thông tin cá nhân!");
