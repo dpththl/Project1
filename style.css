@@ -1,127 +1,60 @@
+*{
+  font-family: 'Courier New', Courier, monospace;
+}
+
 body {
   background: #acfac8;
-  font-family: 'Courier New', Courier, monospace;
   max-width: 500px;
   margin: 30px auto;
   font-size: 20px;
 }
 
-#login-screen h2 {
-  font-family: 'Courier New', Courier, monospace;
+input, select, button {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 18px;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 6px;
+}
+
+button {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+a {
+  font-weight: 600;
+}
+
+h2 {
   text-align: center;
   font-size: 40px;
   font-weight: 900;
   color: #2a7f62;
 }
 
-#login-screen input {
-  border-radius: 6px;
-  margin: 5px 0;
+#login-screen, #register-screen {
   padding: 10px;
-  width: 100%;
-  box-sizing: border-box;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 20px;
 }
 
-#login-screen button {
+#login-screen button #register-screen button {
   background-color: #0e4274;
   color: #ffffff;
-  border-radius: 6px;
-  margin: 5px 0;
-  padding: 8px;
-  width: 100%;
-  box-sizing: border-box;
-  font-family: 'Courier New', Courier, monospace;
-  font-weight: 600;
-  font-size: 20px;
-  text-align: center;
-}
-
-#login-screen p {
-  font-style: italic;
-}
-
-#login-screen a {
-  font-weight: 600;
-}
-
-#register-screen h2 {
-  font-family: 'Courier New', Courier, monospace;
-  text-align: center;
-  font-size: 40px;
-  font-weight: 900;
-  color: #2a7f62;
-}
-
-#register-screen input {
-  border-radius: 6px;
-  margin: 5px 0;
-  padding: 10px;
-  width: 100%;
-  box-sizing: border-box;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 20px;
-}
-
-#register-screen button {
-  background-color: #0e4274;
-  color: #ffffff;
-  border-radius: 6px;
-  margin: 5px 0;
-  padding: 8px;
-  width: 100%;
-  box-sizing: border-box;
-  font-family: 'Courier New', Courier, monospace;
-  font-weight: 600;
-  font-size: 20px;
-  text-align: center;
-}
-
-#register-screen p {
-  font-style: italic;
-}
-
-#register-screen a {
-  font-weight: 600;
-}
-
-#app-screen {
-  background-color: #0e4274; /* màu nền bạn chọn */
-  padding: 20px;
-  border-radius: 10px;
-  color: #ffffff; /* chữ trắng cho dễ đọc */
 }
 
 #app-screen h2 {
-  color: #fff3b0; /* tiêu đề vàng nhạt nổi bật */
-  text-align: center;
-  font-size: 36px;
+  color: #fff3b0; 
 }
 
-#app-screen input,
-#app-screen select,
-#app-screen button {
-  margin: 10px 0;
-  padding: 10px;
-  width: 100%;
-  border: none;
-  border-radius: 6px;
-  box-sizing: border-box;
-  font-size: 18px;
-}
-
-#app-screen input,
-#app-screen select {
-  background-color: #ffffff;
+#app-screen input, #app-screen select {
+  background-color: white;
   color: #0e4274;
 }
 
 #app-screen button {
   background-color: #ffffff;
   color: #0e4274;
-  font-weight: bold;
-  cursor: pointer;
 }
 
 #app-screen button:hover {
@@ -129,9 +62,88 @@ body {
 }
 
 #task-list li {
-  background-color: #ffffff;
+  background-color: white;
   color: #0e4274;
   margin: 5px 0;
   padding: 10px;
   border-radius: 6px;
+}
+
+.high {
+  background-color: #ffdddd;
+}
+
+.medium {
+  background-color: #fff7cc;
+}
+
+.low {
+  background-color: #d5fbd5;
+}
+
+.completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.user-menu-container {
+  position: relative;
+  float: right;
+  margin-top: -10px;
+}
+
+#user-icon-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+}
+
+.user-dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: white;
+  min-width: 150px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 6px;
+}
+
+.user-dropdown a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #0e4274;
+}
+
+.user-dropdown a:hover {
+  background-color: #f0f0f0;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.4);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.modal-content h3 {
+  margin-top: 0;
+  color: #0e4274;
 }
