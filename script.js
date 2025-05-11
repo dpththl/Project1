@@ -89,9 +89,10 @@ function addTask(event) {
 
 function toggleTaskCompleted(date, index) {
   const users = JSON.parse(localStorage.getItem('users'));
-  users[currentUser].tasks[date][index].completed = !users[currentUser].tasks[date][index].completed;
+  const tasks = users[currentUser].tasks[date];
+  tasks[index].completed = !tasks[index].completed;
   localStorage.setItem('users', JSON.stringify(users));
-  loadTasks();
+  loadTasks(); 
 }
 
 function loadTasks() {
@@ -108,16 +109,16 @@ function loadTasks() {
     return;
   }
 
-  const tasksWithIndex = originTasks.map((task, i) => ({ ...task, originIndex: i}));
+  const tasksWithIndex = originTasks.map((task, i) => ({ ...task, originalIndex: i }));
   tasksWithIndex.sort((a, b) => b.priority - a.priority);
 
-  const priorityTextMap = { 3: 'Cao', 2: 'Trung bình', 1: 'Thấp' }; 
+  const priorityTextMap = { 3: 'Cao', 2: 'Trung bình', 1: 'Thấp' };
 
   tasksWithIndex.forEach((task) => {
     const li = document.createElement('li');
     li.className = task.priority === 3 ? 'high' : task.priority === 2 ? 'medium' : 'low';
     if (task.completed) li.classList.add('completed');
-    
+
     const text = document.createElement('span');
     text.textContent = `${task.content} (Ưu tiên: ${priorityTextMap[task.priority]})`;
 
@@ -132,8 +133,12 @@ function loadTasks() {
     const trashBtn = document.createElement('i');
     trashBtn.className = 'fa-regular fa-trash';
     trashBtn.onclick = () => {
-      originalTasks.splice(task.originalIndex, 1);
-      users[currentUser].tasks[taskDate] = originalTasks;
+      tasksWithIndex.splice(task.originalIndex, 1);
+      users[currentUser].tasks[taskDate] = tasksWithIndex.map(task => ({
+        content: task.content,
+        priority: task.priority,
+        completed: task.completed
+      }));
       localStorage.setItem('users', JSON.stringify(users));
       loadTasks();
     };
