@@ -95,7 +95,7 @@ h2 {
   background-color: #d5fbd5;
 }
 
-.completed {
+.completed-text {
   text-decoration: line-through;
   opacity: 0.6;
 }

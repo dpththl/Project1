@@ -121,6 +121,7 @@ function loadTasks() {
 
     const text = document.createElement('span');
     text.textContent = `${task.content} (Ưu tiên: ${priorityTextMap[task.priority]})`;
+    text.className = task.completed ? 'completed-text' : '';
 
     const rightIcons = document.createElement('div');
     rightIcons.className = 'task-icons';
