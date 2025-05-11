@@ -112,25 +112,32 @@ function loadTasks() {
 
   const priorityTextMap = { 3: 'Cao', 2: 'Trung bình', 1: 'Thấp' }; 
 
-  tasksWithIndex.forEach((task, index) => {
+  tasksWithIndex.forEach((task) => {
     const li = document.createElement('li');
     li.className = task.priority === 3 ? 'high' : task.priority === 2 ? 'medium' : 'low';
     if (task.completed) li.classList.add('completed');
-  
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.checked = task.completed;
-    checkbox.onchange = () => toggleTaskCompleted(taskDate, task.originIndex);
-    li.appendChild(checkbox);
-  
+
+    const contentWrapper = document.createElement('div');
+    contentWrapper.style.display = 'flex';
+    contentWrapper.style.alignItems = 'center';
+    contentWrapper.style.gap = '8px';
+    contentWrapper.style.flexGrow = '1';
+    
+    const icon = document.createElement('i');
+    icon.className = task.completed ? 'fa-regular fa-square-check' : 'fa-regular fa-square';
+    icon.style.cursor = "pointer";
+    icon.onclick = () => toggleTaskCompleted(taskDate, task.originIndex);
+    li.appendChild(icon);
+
     const text = document.createTextNode(` ${task.content} (Ưu tiên ${priorityTextMap[task.priority]})`);
     li.appendChild(text);
   
     const btn = document.createElement('button');
-    btn.textContent = 'Xoá';
     btn.className = 'delete-btn';
+    btn.innerHTML = '<i class="fa-regular fa-trash"></i>';
     btn.onclick = () => {
       originTasks.splice(task.originIndex, 1);
+      users[currentUser].tasks[taskDate] = originTasks;
       localStorage.setItem('users', JSON.stringify(users));
       loadTasks();
     };

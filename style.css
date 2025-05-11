@@ -18,6 +18,10 @@ input, select, button {
   border-radius: 6px;
 }
 
+input[type="checkbox"] {
+  display: none;
+}
+
 button {
   cursor: pointer;
   font-weight: bold;
@@ -40,11 +44,12 @@ h2 {
 
 #login-screen button #register-screen button {
   background-color: #0e4274;
-  color: #ffffff;
+  color: white;
 }
 
 #app-screen {
   background-color: #0e4274;
+  color: white;
   padding: 20px;
   border-radius: 10px;
 }
@@ -59,7 +64,7 @@ h2 {
 }
 
 #app-screen button {
-  background-color: #ffffff;
+  background-color: white;
   color: #0e4274;
 }
 
@@ -73,6 +78,8 @@ h2 {
   margin: 5px 0;
   padding: 10px;
   border-radius: 6px;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .high {
@@ -90,6 +97,16 @@ h2 {
 .completed {
   text-decoration: line-through;
   opacity: 0.6;
+}
+
+#task-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#task-list li i.fa-square, #task-list li i.fa-square-check, #task-list li .delete-btn i {
+  font-size: 20px;
 }
 
 .user-menu-container {
