@@ -73,6 +73,7 @@ h2 {
 }
 
 #task-list li {
+  display: flex;
   background-color: white;
   color: #0e4274;
   margin: 5px 0;
@@ -99,14 +100,15 @@ h2 {
   opacity: 0.6;
 }
 
-#task-list li {
+.task-icons {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  gap: 10px;
 }
 
-#task-list li i.fa-square, #task-list li i.fa-square-check, #task-list li .delete-btn i {
+.task-icons i {
   font-size: 20px;
+  color: #0e4274;
+  cursor: pointer;
 }
 
 .user-menu-container {

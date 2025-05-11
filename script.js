@@ -1,3 +1,4 @@
+let task = {};
 let currentUser = null;
 
 function toggleAuth(mode) {
@@ -116,32 +117,30 @@ function loadTasks() {
     const li = document.createElement('li');
     li.className = task.priority === 3 ? 'high' : task.priority === 2 ? 'medium' : 'low';
     if (task.completed) li.classList.add('completed');
-
-    const contentWrapper = document.createElement('div');
-    contentWrapper.style.display = 'flex';
-    contentWrapper.style.alignItems = 'center';
-    contentWrapper.style.gap = '8px';
-    contentWrapper.style.flexGrow = '1';
     
-    const icon = document.createElement('i');
-    icon.className = task.completed ? 'fa-solid fa-square-check' : 'fa-solid fa-square';
-    icon.style.cursor = "pointer";
-    icon.onclick = () => toggleTaskCompleted(taskDate, task.originIndex);
-    li.appendChild(icon);
+    const text = document.createElement('span');
+    text.textContent = `${task.content} (Ưu tiên: ${priorityTextMap[task.priority]})`;
 
-    const text = document.createTextNode(` ${task.content} (Ưu tiên ${priorityTextMap[task.priority]})`);
-    li.appendChild(text);
-  
-    const btn = document.createElement('button');
-    btn.className = 'delete-btn';
-    btn.innerHTML = '<i class="fa-regular fa-trash"></i>';
-    btn.onclick = () => {
-      originTasks.splice(task.originIndex, 1);
-      users[currentUser].tasks[taskDate] = originTasks;
+    const rightIcons = document.createElement('div');
+    rightIcons.className = 'task-icons';
+
+    const checkboxIcon = document.createElement('i');
+    checkboxIcon.className = task.completed ? 'fa-regular fa-square-check' : 'fa-regular fa-square';
+    checkboxIcon.onclick = () => toggleTaskCompleted(taskDate, task.originalIndex);
+    rightIcons.appendChild(checkboxIcon);
+
+    const trashBtn = document.createElement('i');
+    trashBtn.className = 'fa-regular fa-trash';
+    trashBtn.onclick = () => {
+      originalTasks.splice(task.originalIndex, 1);
+      users[currentUser].tasks[taskDate] = originalTasks;
       localStorage.setItem('users', JSON.stringify(users));
       loadTasks();
     };
-    li.appendChild(btn);
+    rightIcons.appendChild(trashBtn);
+
+    li.appendChild(text);
+    li.appendChild(rightIcons);
     list.appendChild(li);
   });
 }
