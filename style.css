@@ -176,3 +176,21 @@ h2 {
   margin-top: 0;
   color: #0e4274;
 }
+
+.centered-auth {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #acfac8;
+}
+
+#login-screen, #register-screen {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+  color: #0e4274;
+}
