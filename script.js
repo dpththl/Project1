@@ -264,3 +264,66 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+function showAllTasks() {
+  const container = document.getElementById("all-tasks-list");
+  const users = JSON.parse(localStorage.getItem('users') || '{}');
+  if (!currentUser || !users[currentUser] || !users[currentUser].tasks) {
+    container.innerHTML = "<p>Không có công việc nào.</p>";
+    return;
+  }
+
+  const allTasks = users[currentUser].tasks;
+  const sortedDates = Object.keys(allTasks).sort(); // tăng dần theo ngày
+
+  const priorityTextMap = { 3: 'Cao', 2: 'Trung bình', 1: 'Thấp' };
+
+  sortedDates.forEach(date => {
+    const tasks = [...allTasks[date]];
+    tasks.sort((a, b) => b.priority - a.priority);
+
+    const section = document.createElement("div");
+    section.innerHTML = `<h3>Ngày ${date}</h3>`;
+    const ul = document.createElement("ul");
+
+    tasks.forEach((task, i) => {
+      const li = document.createElement("li");
+      li.className = task.priority === 3 ? "high" : task.priority === 2 ? "medium" : "low";
+      if (task.completed) li.classList.add("completed");
+
+      const span = document.createElement("span");
+      span.textContent = `${task.content} (Ưu tiên: ${priorityTextMap[task.priority]})`;
+      span.className = task.completed ? 'completed-text' : '';
+
+      const icons = document.createElement("div");
+      icons.className = "task-icons";
+
+      const checkbox = document.createElement("i");
+      checkbox.className = task.completed ? "fa-regular fa-square-check" : "fa-regular fa-square";
+      checkbox.onclick = () => {
+        task.completed = !task.completed;
+        localStorage.setItem('users', JSON.stringify(users));
+        showAllTasks();
+      };
+
+      const trash = document.createElement("i");
+      trash.className = "fa-solid fa-trash";
+      trash.onclick = () => {
+        allTasks[date].splice(i, 1);
+        if (allTasks[date].length === 0) delete allTasks[date];
+        localStorage.setItem('users', JSON.stringify(users));
+        showAllTasks();
+      };
+
+      icons.appendChild(checkbox);
+      icons.appendChild(trash);
+
+      li.appendChild(span);
+      li.appendChild(icons);
+      ul.appendChild(li);
+    });
+
+    section.appendChild(ul);
+    container.appendChild(section);
+  });
+}
