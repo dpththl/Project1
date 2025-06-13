@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title>To-Do List App</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="UTF-8" />
+  <title>Trang chủ</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 </head>
 <body>
-  <div id="auth-screen" class="centered-auth">
+
+  <div id="auth-screen">
     <div id="login-screen">
       <form onsubmit="event.preventDefault(); login();">
         <h2>Đăng nhập</h2>
-        <input id="username" placeholder="Tên đăng nhập">
-        <input id="password" type="password" placeholder="Mật khẩu">
+        <input id="username" placeholder="Tên đăng nhập" />
+        <input id="password" type="password" placeholder="Mật khẩu" />
         <button type="submit">Đăng nhập</button>
         <p>Bạn chưa có tài khoản? <a href="#" onclick="toggleAuth('register')">Đăng ký</a></p>
       </form>
@@ -21,79 +22,45 @@
     <div id="register-screen" style="display: none;">
       <form onsubmit="event.preventDefault(); register();">
         <h2>Đăng ký</h2>
-        <input id="new-username" placeholder="Tài khoản mới">
-        <input id="new-password" type="password" placeholder="Mật khẩu mới">
-        <input id="confirm-password" type="password" placeholder="Nhập lại mật khẩu">
+        <input id="new-username" placeholder="Tài khoản mới" />
+        <input id="new-password" type="password" placeholder="Mật khẩu mới" />
+        <input id="confirm-password" type="password" placeholder="Nhập lại mật khẩu" />
         <button type="submit">Tạo tài khoản</button>
         <p>Đã có tài khoản? <a href="#" onclick="toggleAuth('login')">Đăng nhập</a></p>
       </form>
     </div>
+
     <p id="login-error" style="color: red;"></p>
   </div>
 
   <div id="app-screen" style="display: none;">
-    <div class="user-menu-container">
-      <button id="user-icon-btn">
-        <i class="fas fa-user"></i>
-      </button>
-      <div class="user-dropdown" id="user-dropdown">
-        <a href="#" onclick="editProfile()">Chỉnh sửa hồ sơ</a>
-        <a href="#" onclick="logout()">Đăng xuất</a>
+    <header class="navbar">
+      <div class="nav-left">
+        <a href="index.html" class="nav-item">Trang chủ</a>
+        <a href="all-tasks.html" class="nav-item">Tất cả công việc</a>
       </div>
-    </div>
-    <h2>Lịch làm việc</h2>
-    <p style="text-align: center; margin-top: 10px;">
-      <a href="all-tasks.html" style="color: white; font-weight: bold;">Xem tất cả công việc</a>
-    </p>
-    <input type="date" id="task-date" onchange="loadTasks()" />
-    <form onsubmit="addTask(event)">
-      <input id="task-input" placeholder="Nội dung công việc" required>
-      <select id="priority-select">
-        <option value="high">Ưu tiên cao</option>
-        <option value="medium">Trung bình</option>
-        <option value="low">Thấp</option>
-      </select>
-      <button type="submit">Thêm công việc</button>
-    </form>
-    <ul id="task-list"></ul>
-  </div>
-  
-  <div id="edit-profile-modal" class="modal">
-    <div class="modal-content">
-      <h3>Cập nhật hồ sơ cá nhân</h3>
-      <input id="edit-username" readonly />
-      <input id="edit-avatar" type="file" accept="image/*" />
-      <img id="avatar-preview" style="width: 100px; height: 100px; object-fit: cover; margin-top: 10px;" />
-      <input id="edit-name" type="text" placeholder="Họ và tên" />
-      <input id="edit-dob" type="date" placeholder="Ngày sinh" />
-      <input id="edit-email" type="email" placeholder="Email" />
-      <input id="edit-phone" type="tel" placeholder="Số điện thoại" />
-      <select id="edit-job">
-        <option value="">-- Chọn nghề nghiệp --</option>
-        <option value="học sinh - sinh viên">Học sinh - Sinh viên</option>
-        <option value="giáo viên">Giáo viên</option>
-        <option value="nhân viên văn phòng">Nhân viên văn phòng</option>
-        <option value="công an">Công an</option>
-        <option value="bộ đội">Bộ đội</option>
-        <option value="bác sĩ">Bác sĩ</option>
-        <option value="lao động tự do">Lao động tự do</option>
-        <option value="khác">Khác</option>
-      </select>
-      <input id="edit-workplace" placeholder="Đơn vị làm việc" />
-      <button onclick="openChangePasswordModal()">Đổi mật khẩu</button>
-      <button onclick="saveProfile()">Lưu</button>
-      <button onclick="closeEditModal()">Huỷ</button>
-    </div>
-  </div>
+      <div class="nav-right">
+        <a href="#" class="logout-btn" onclick="logout()">Đăng xuất</a>
+      </div>
+    </header>
 
-  <div id="change-password-modal" class="modal">
-    <div class="modal-content">
-      <h3>Đổi mật khẩu</h3>
-      <input id="new-password" type="password" placeholder="Mật khẩu mới" />
-      <input id="confirm-password" type="password" placeholder="Xác nhận mật khẩu" />
-      <button onclick="saveNewPassword()">Lưu</button>
-      <button onclick="closeChangePasswordModal()">Hủy</button>
-    </div>
+    <main class="main-container">
+      <section class="task-form">
+        <input type="date" id="task-date" />
+        <input id="task-input" placeholder="Nội dung" />
+        <select id="priority-select">
+          <option value="high">Ưu tiên cao</option>
+          <option value="medium">Trung bình</option>
+          <option value="low">Thấp</option>
+        </select>
+        <button onclick="addTask(event)">Thêm công việc</button>
+      </section>
+
+      <section class="task-list-container">
+        <h2>Các công việc theo ngày đã chọn</h2>
+        <ul id="task-list"></ul>
+      </section>
+    </main>
   </div>
 
   <script src="script.js"></script>

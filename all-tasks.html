@@ -7,28 +7,26 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 </head>
 <body>
+
   <div id="app-screen">
-    <div class="user-menu-container">
-      <button id="user-icon-btn">
-        <i class="fas fa-user"></i>
-      </button>
-      <div class="user-dropdown" id="user-dropdown">
-        <a href="index.html">Trang chính</a>
-        <a href="#" onclick="editProfile()">Chỉnh sửa hồ sơ</a>
-        <a href="#" onclick="logout()">Đăng xuất</a>
+    <header class="navbar">
+      <div class="nav-left">
+        <a href="index.html" class="nav-item">Trang chủ</a>
+        <a href="all-tasks.html" class="nav-item">Tất cả công việc</a>
       </div>
-    </div>
-    <h2>Tất cả công việc</h2>
-    <div style="text-align: center; margin-bottom: 10px;">
-      <a href="index.html" style="color: white; font-weight: bold;">Trang chủ</a>
-    </div>
-    <div id="all-tasks-list"></div>
+      <div class="nav-right">
+        <a href="#" class="logout-btn" onclick="logout()">Đăng xuất</a>
+      </div>
+    </header>
+
+    <main class="main-container">
+      <section class="task-list-container full-width">
+        <h2>Tất cả các công việc đã được thêm</h2>
+        <div id="all-tasks-list"></div>
+      </section>
+    </main>
   </div>
-  <div id="edit-profile-modal" class="modal">
-  </div>
-  <div id="change-password-modal" class="modal">
-  </div>
-  
+
   <script src="script.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", showAllTasks);
