@@ -197,13 +197,11 @@ function showAllTasks() {
   });
 }
 
-// 🔁 Tự động khôi phục trạng thái nếu người dùng đã đăng nhập trước đó
 document.addEventListener("DOMContentLoaded", () => {
   const saved = localStorage.getItem("currentUser");
   const users = JSON.parse(localStorage.getItem("users") || "{}");
   if (saved && users[saved]) {
     currentUser = saved;
-    // Luôn ẩn auth, hiện app
     if (document.getElementById("auth-screen")) {
       document.getElementById("auth-screen").style.display = "none";
     }
@@ -213,7 +211,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (document.getElementById("task-date")) loadTasks();
     if (document.getElementById("all-tasks-list")) showAllTasks();
   } else {
-    // Nếu chưa đăng nhập, luôn hiện auth, ẩn app
     if (document.getElementById("auth-screen")) {
       document.getElementById("auth-screen").style.display = "flex";
     }
@@ -225,5 +222,26 @@ document.addEventListener("DOMContentLoaded", () => {
   const dateInput = document.getElementById("task-date");
   if (dateInput) {
     dateInput.addEventListener("change", loadTasks);
+  }
+});
+
+let logoutTimer;
+const AUTO_LOGOUT_TIME = 10 * 60 * 1000;
+
+function resetLogoutTimer() {
+  clearTimeout(logoutTimer);
+  logoutTimer = setTimeout(() => {
+    alert("Bạn đã bị đăng xuất do không hoạt động quá lâu.");
+    logout();
+  }, AUTO_LOGOUT_TIME);
+}
+
+["click", "keydown", "mousemove", "scroll", "touchstart"].forEach(evt => {
+  window.addEventListener(evt, resetLogoutTimer);
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (localStorage.getItem("currentUser")) {
+    resetLogoutTimer();
   }
 });

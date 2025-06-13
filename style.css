@@ -8,7 +8,6 @@ body {
   background: #b3ffd9;
 }
 
-/* === Đăng nhập / Đăng ký === */
 #auth-screen {
   height: 100vh;
   display: flex;
@@ -72,7 +71,6 @@ body {
   color: red;
 }
 
-/* === Navbar === */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -89,7 +87,6 @@ body {
   font-weight: bold;
 }
 
-/* === Trang chính và tất cả công việc === */
 .main-container {
   display: flex;
   padding: 20px;
