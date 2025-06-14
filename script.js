@@ -245,3 +245,7 @@ document.addEventListener("DOMContentLoaded", () => {
     resetLogoutTimer();
   }
 });
+
+window.addEventListener("beforeunload", function () {
+  localStorage.removeItem("currentUser");
+});
