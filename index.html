@@ -15,6 +15,7 @@
         <input id="username" placeholder="Tên đăng nhập" />
         <input id="password" type="password" placeholder="Mật khẩu" />
         <button type="submit">Đăng nhập</button>
+        <p id="login-error" style="color: red;"></p>
         <p>Bạn chưa có tài khoản? <a href="#" onclick="toggleAuth('register')">Đăng ký</a></p>
       </form>
     </div>
@@ -29,8 +30,6 @@
         <p>Đã có tài khoản? <a href="#" onclick="toggleAuth('login')">Đăng nhập</a></p>
       </form>
     </div>
-
-    <p id="login-error" style="color: red;"></p>
   </div>
 
   <div id="app-screen" style="display: none;">
