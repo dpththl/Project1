@@ -11,34 +11,37 @@ function register() {
   const pass = document.getElementById('new-password').value;
   const confirm = document.getElementById('confirm-password').value;
   const users = JSON.parse(localStorage.getItem('users') || '{}');
+  const errorElem = document.getElementById('register-error');
 
   if (users[user]) {
-    document.getElementById('login-error').textContent = 'Tài khoản đã tồn tại';
+    errorElem.textContent = 'Tài khoản đã tồn tại';
+    errorElem.style.color = 'red';
     return;
   }
 
   if (user.length < 3) {
-    document.getElementById('login-error').textContent = 'Tên tài khoản phải từ 3 ký tự trở lên';
+    errorElem.textContent = 'Tên tài khoản phải từ 3 ký tự trở lên';
+    errorElem.style.color = 'red';
     return;
   }
 
   const passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
   if (!passRegex.test(pass)) {
-    document.getElementById('login-error').textContent = 'Mật khẩu cần ít nhất 8 ký tự, có chữ hoa, thường, số, ký tự đặc biệt';
-    document.getElementById('login-error').style.color = 'red';
+    errorElem.textContent = 'Mật khẩu cần ít nhất 8 ký tự, có chữ hoa, thường, số, ký tự đặc biệt';
+    errorElem.style.color = 'red';
     return;
   }
 
   if (pass !== confirm) {
-    document.getElementById('login-error').textContent = 'Mật khẩu nhập lại không khớp';
-    document.getElementById('login-error').style.color = 'red';
+    errorElem.textContent = 'Mật khẩu nhập lại không khớp';
+    errorElem.style.color = 'red';
     return;
   }
 
   users[user] = { password: pass, tasks: {} };
   localStorage.setItem('users', JSON.stringify(users));
-  document.getElementById('login-error').textContent = 'Đăng ký thành công. Xin mời đăng nhập!';
-  document.getElementById('login-error').style.color = 'green';
+  errorElem.textContent = 'Đăng ký thành công. Xin mời đăng nhập!';
+  errorElem.style.color = 'green';
 }
 
 function login() {
