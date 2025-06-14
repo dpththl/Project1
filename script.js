@@ -25,6 +25,7 @@ function register() {
   const passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
   if (!passRegex.test(pass)) {
     document.getElementById('login-error').textContent = 'Mật khẩu cần ít nhất 8 ký tự, có chữ hoa, thường, số, ký tự đặc biệt';
+    document.getElementById('login-error').style.color = 'red';
     return;
   }
 
