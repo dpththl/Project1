@@ -248,6 +248,4 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-window.addEventListener("beforeunload", function () {
-  localStorage.removeItem("currentUser");
-});
+
