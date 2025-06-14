@@ -30,13 +30,14 @@ function register() {
 
   if (pass !== confirm) {
     document.getElementById('login-error').textContent = 'Mật khẩu nhập lại không khớp';
+    document.getElementById('login-error').style.color = 'red';
     return;
   }
 
   users[user] = { password: pass, tasks: {} };
   localStorage.setItem('users', JSON.stringify(users));
-  document.getElementById('login-error').textContent = 'Đăng ký thành công, hãy đăng nhập';
-  toggleAuth('login');
+  document.getElementById('login-error').textContent = 'Đăng ký thành công. Xin mời đăng nhập!';
+  document.getElementById('login-error').style.color = 'green';
 }
 
 function login() {
